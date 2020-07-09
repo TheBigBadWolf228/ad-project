@@ -10,7 +10,8 @@
         div
             v-toolbar(:color='bar.class', :dark='bar.dark')
                 v-app-bar-nav-icon.hidden-md-and-up(@click='drawer = !drawer')
-                v-toolbar-title Title
+                v-toolbar-title
+                    router-link(to="/", tag="span", class="pointer") Home
                 v-spacer
                 v-toolbar-items.hidden-sm-and-down
                     v-btn(v-for='item in items', :key='item.title', :to='item.url', text='')
@@ -39,3 +40,9 @@
   }
 }
 </script>
+
+<style scoped>
+    .pointer {
+        cursor: pointer;
+    }
+</style>
