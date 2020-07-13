@@ -11,12 +11,11 @@
                             v-spacer
                             v-btn Upload
                                 v-icon(dark) {{uploadIcon}}
-        v-layout(row)
+
             v-flex(xs12, sm6, offset-sm3).text-center
                 v-switch(v-model='promo', label='Add to promo?')
                 img(src="", height="100")
 
-        v-layout(row)
             v-flex(xs12, sm6, offset-sm3)
                 v-card-actions
                     v-spacer

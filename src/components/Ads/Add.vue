@@ -2,7 +2,7 @@
     v-container
         v-layout(row)
             v-flex(xs12)
-                h1 Add
+
 </template>
 
 <script>
