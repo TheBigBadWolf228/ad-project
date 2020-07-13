@@ -19,7 +19,7 @@
                             div {{ad.description}}
                         v-card-actions
                             v-spacer
-                            v-btn(flat, :to="'/ad/' + ad.id")  OPEN
+                            v-btn(text, :to="'/ad/' + ad.id")  OPEN
                             v-btn(raised, class="primary")  BUY
 </template>
 
