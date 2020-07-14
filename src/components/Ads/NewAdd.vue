@@ -9,13 +9,13 @@
                             v-textarea(label='Add description', name='description', type='text', v-model="description",   :rules="[v => !!v || 'Description is required']")
                         v-card-actions
                             v-spacer
-                            v-btn Upload
+                            v-btn.secondary Upload
                                 v-icon(dark) {{uploadIcon}}
 
 
             v-col(xs="12", sm="6", offset-sm="3").text-center
                 v-switch(v-model='promo', label='Add to promo?')
-                img(src="", height="100")
+                v-img(src="", height="100")
                 v-card-actions
                     v-spacer
                     v-btn.primary(@click="createAd", :disabled="!valid") Create ad
