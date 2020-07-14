@@ -1,7 +1,7 @@
 <template lang="pug">
     v-container
-        v-layout(row)
-            v-flex(xs12, sm4)
+        v-row
+            v-col(cols="12", xs="12", sm="4")
             h1.text--secondary Orders
                 v-list(subheader='', two-line='', text='').mt-4
                     v-list-item-group(multiple='', v-for="order in orders", :key="order.id")

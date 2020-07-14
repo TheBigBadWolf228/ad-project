@@ -2,16 +2,16 @@
 
     div
         v-container(fluid)
-            v-layout(row)
-                v-flex(xs12)
+            v-row
+                v-col(cols="12", xs="12")
                     v-carousel
                         v-carousel-item(v-for="ad in ads" :key="ad.id", :src="ad.imageSrc")
                             div(class="car-link")
                                 v-btn(class="error", :to="'/ad/' + ad.id") {{ad.title}}
 
         v-container(grid-list-lg)
-            v-layout(wrap, align-content-start)
-                v-flex(xs12, md4, sm6, v-for="ad in ads" :key="ad.id")
+            v-row(wrap, align-content-start)
+                v-col(xs="12", md="4", sm="6", v-for="ad in ads" :key="ad.id")
                     v-card(max-width='400')
                         v-img.white--text.align-end(height='200px', :src="ad.imageSrc")
                             v-card-title {{ad.title}}

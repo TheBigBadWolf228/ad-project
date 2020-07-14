@@ -1,7 +1,7 @@
 <template lang="pug">
     v-container
-        v-layout(row).mb-3
-            v-flex(xs12, sm6, offset-sm3)
+        v-row.mb-3
+            v-col(cols="12",xs="12", sm="6", offset-sm="3")
                 h1.text--secondary Create new ad
                     v-card-text
                         v-form(ref="form", v-model="valid", validation)
@@ -12,14 +12,14 @@
                             v-btn Upload
                                 v-icon(dark) {{uploadIcon}}
 
-            v-flex(xs12, sm6, offset-sm3).text-center
+
+            v-col(xs="12", sm="6", offset-sm="3").text-center
                 v-switch(v-model='promo', label='Add to promo?')
                 img(src="", height="100")
-
-            v-flex(xs12, sm6, offset-sm3)
                 v-card-actions
                     v-spacer
                     v-btn.primary(@click="createAd", :disabled="!valid") Create ad
+
 </template>
 
 <script>

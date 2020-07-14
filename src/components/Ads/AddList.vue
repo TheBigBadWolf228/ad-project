@@ -1,7 +1,7 @@
 <template lang="pug">
     v-container
-        v-layout(row)
-            v-flex(xs12, sm6, offset-sm3)
+        v-row
+            v-col(xs="12", sm="6", offset-sm="3")
                 h1.text--secondary.mb-3 My ads
                 v-card(v-for="ad in ads", :key="ad.id").elevation-10.mb-2
                     v-img(:src="ad.imageSrc", height="100px")
