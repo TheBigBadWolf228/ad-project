@@ -12,7 +12,7 @@
                             v-text-field(label='Confirm password', name='confirm-password', prepend-icon='mdi-lock', type='password', v-model="confirmPassword", :counter="8", :rules="confirmPasswordRules")
                     v-card-actions
                         v-spacer
-                        v-btn(color='primary', @click = "onSubmit", :disabled="!valid") Create account
+                        v-btn(color='primary', @click = "onSubmit()", :disabled="!valid || loading", :loading="loading") Create account
 </template>
 
 <script>
@@ -40,7 +40,22 @@
         },
         methods: {
             onSubmit() {
-                //logic
+                if (this.$refs.form.validate()){
+                    const user = {
+                        email: this.email,
+                        password: this.password
+                    }
+                    this.$store.dispatch('registerUser', user)
+                    .then(() => {
+                        this.$router.push('/')
+                    })
+                    .catch(err => console.log(err))
+                }
+            }
+        },
+        computed: {
+            loading(){
+                return this.$store.getters.loading
             }
         }
     }
