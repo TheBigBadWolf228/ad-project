@@ -42,8 +42,10 @@
                     const ad = {
                         title: this.title,
                         description: this.description,
-                        promo: this.promo
+                        promo: this.promo,
+                        imageSrc: 'https://picsum.photos/510/300?random'
                     }
+                    this.$store.dispatch('createAd', ad)
                     console.log(ad)
                 }
 

@@ -3,10 +3,10 @@
        v-row
             v-col(xs="12")
                 v-card
-                    v-img(:src="image", height="300px")
+                    v-img(:src="ad.imageSrc", height="300px")
                     v-card-text
-                        h1.text--primary Lorem
-                        p Lorem10 Lorem10 Lorem10Lorem10 Lorem10 Lorem10 Lorem10 Lorem10 Lorem10 Lorem10 Lorem10 Lorem10 Lorem10 Lorem10 Lorem10 Lorem10 Lorem10
+                        h1.text--primary {{ad.title}}
+                        p {{ad.description}}
                     v-card-actions
                         v-spacer
                         v-btn.secondary Edit
@@ -17,9 +17,11 @@
 <script>
     export default {
         name: "Add",
-        data() {
-            return {
-                image: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+        props: ['id'],
+        computed: {
+            ad(){
+                const id = this.id
+                return this.$store.getters.adById(id)
             }
         }
     }
