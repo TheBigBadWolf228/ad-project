@@ -20,6 +20,14 @@
         v-main
             router-view
 
+            v-snackbar(:value="error", :multi-line="true", :timeout='10000', :top="true", color="error") {{error}}
+                template(v-slot:action='{ attrs }')
+                    v-btn(dark, text, v-bind='attrs', @click='closeError') Close
+
+
+
+
+
 </template>
 
 <script>
@@ -35,9 +43,19 @@
         { title: 'Orders', icon: 'mdi-border-color' , url: '/orders'},
         { title: 'New ad', icon: 'mdi-format-annotation-plus' , url: '/new'},
         { title: 'My ads', icon: 'mdi-clipboard-list-outline' , url: '/list'}
-      ]
+      ],
     }
-  }
+  },
+   computed: {
+      error() {
+          return this.$store.getters.error
+      }
+   },
+   methods: {
+       closeError() {
+           this.$store.dispatch('clearError')
+       }
+   }
 }
 </script>
 
