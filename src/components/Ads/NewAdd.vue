@@ -9,16 +9,18 @@
                             v-textarea(label='Add description', name='description', type='text', v-model="description",   :rules="[v => !!v || 'Description is required']")
                         v-card-actions
                             v-spacer
-                            v-btn.secondary Upload
+                            v-btn.secondary(@click="triggerUpload") Upload
                                 v-icon(dark) {{uploadIcon}}
+                            input(ref="fileInput", type="file", style="display: none;", accept="image/*", @change="onFileChange")
+
 
 
             v-col(xs="12", sm="6", offset-sm="3").text-center
                 v-switch(v-model='promo', label='Add to promo?')
-                v-img(src="", height="100")
+                v-img(:src="imageSrc", height="200", v-if="imageSrc")
                 v-card-actions
                     v-spacer
-                    v-btn.primary(@click="createAd", :disabled="!valid" || loading, :loading="loading") Create ad
+                    v-btn.primary(@click="createAd", :disabled="!valid || !image" || loading, :loading="loading") Create ad
 
 </template>
 
@@ -32,18 +34,21 @@
                 title: '',
                 description: '',
                 promo: false,
-                valid: false
+                valid: false,
+                image: null,
+                imageSrc: ''
             }
         },
         methods:{
             createAd() {
-                if (this.$refs.form.validate()){
+                if (this.$refs.form.validate() && this.image){
                     //logic
                     const ad = {
                         title: this.title,
                         description: this.description,
                         promo: this.promo,
-                        imageSrc: 'https://picsum.photos/510/300?random'
+                        image: this.image
+
                     }
                     this.$store.dispatch('createAd', ad)
                         .then(() => {
@@ -52,6 +57,20 @@
                         .catch(() => {})
                 }
 
+            },
+            triggerUpload() {
+                this.$refs.fileInput.click()
+            },
+            onFileChange(event) {
+                const file = event.target.files[0]
+                const reader = new FileReader()
+
+                // eslint-disable-next-line no-unused-vars
+                reader.onload = e => {
+                    this.imageSrc = reader.result
+                }
+                reader.readAsDataURL(file)
+                this.image = file
             }
         },
         computed: {
