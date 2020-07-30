@@ -1,6 +1,6 @@
 <template lang="pug">
 
-    div
+    div(v-if="!loading")
         v-container(fluid)
             v-row
                 v-col(cols="12", xs="12")
@@ -21,6 +21,12 @@
                             v-spacer
                             v-btn(text, :to="'/ad/' + ad.id")  OPEN
                             v-btn(raised, class="primary")  BUY
+    div(v-else)
+        v-container
+            v-row
+                v-col(xs12).text-xl-center.pt-5
+                    v-progress-circular(indeterminate='', color='purple', :size="70")
+
 </template>
 
 
@@ -34,6 +40,9 @@
             },
             allAds() {
                 return this.$store.getters.ads
+            },
+            loading() {
+                return this.$store.getters.loading
             }
         }
     }
