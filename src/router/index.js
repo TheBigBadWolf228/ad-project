@@ -1,19 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from "../components/Home";
+import AuthGuard from './auth-guard'
 import Add from "../components/Ads/Add";
 import AddList from "../components/Ads/AddList";
 import NewAdd from "../components/Ads/NewAdd";
 import Login from "../components/Auth/Login";
 import Registration from "../components/Auth/Registration";
 import Orders from "../components/User/Orders";
+import Home from "@/components/Home";
 
 
 
 Vue.use(VueRouter)
 
 export default new VueRouter({
-  routes: [
+  routes: [ //beforeEach
     {
       path: '',
       name: 'home',
@@ -23,17 +24,20 @@ export default new VueRouter({
       path: '/ad/:id',
       props: true,
       name: 'ad',
-      component: Add
+      component: Add,
+      beforeEnter: AuthGuard
     },
     {
       path: '/list',
       name: 'list',
-      component: AddList
+      component: AddList,
+      beforeEnter: AuthGuard
     },
     {
       path: '/new',
       name: 'newAd',
-      component: NewAdd
+      component: NewAdd,
+      beforeEnter: AuthGuard
     },
     {
       path: '/login',
@@ -48,7 +52,8 @@ export default new VueRouter({
     {
       path: '/orders',
       name: 'orders',
-      component: Orders
+      component: Orders,
+      beforeEnter: AuthGuard
     }
   ]
 })

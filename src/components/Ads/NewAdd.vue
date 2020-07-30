@@ -18,7 +18,7 @@
                 v-img(src="", height="100")
                 v-card-actions
                     v-spacer
-                    v-btn.primary(@click="createAd", :disabled="!valid") Create ad
+                    v-btn.primary(@click="createAd", :disabled="!valid" || loading, :loading="loading") Create ad
 
 </template>
 
@@ -46,9 +46,17 @@
                         imageSrc: 'https://picsum.photos/510/300?random'
                     }
                     this.$store.dispatch('createAd', ad)
-                    console.log(ad)
+                        .then(() => {
+                            this.$router.push('/list')
+                        })
+                        .catch(() => {})
                 }
 
+            }
+        },
+        computed: {
+            loading() {
+                return this.$store.getters.loading
             }
         }
     }

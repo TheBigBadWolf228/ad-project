@@ -11,7 +11,6 @@
                         v-spacer
                         v-btn.secondary Edit
                         v-btn.primary Buy
-
 </template>
 
 <script>
