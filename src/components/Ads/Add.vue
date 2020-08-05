@@ -10,7 +10,7 @@
                     v-card-actions
                         v-spacer
                         addEditAdModal(:ad="ad", v-if="isOwner")
-                        v-btn.primary Buy
+                        app-buy-modal(:ad="ad")
                 div(v-else)
                     v-container
                         v-row

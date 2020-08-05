@@ -2,7 +2,7 @@
     v-container
         v-row
             v-col(cols="12", xs="12", sm="4")
-            h1.text--secondary Orders
+                h1.text--secondary Orders
                 v-list(subheader='', two-line='', text='').mt-4
                     v-list-item-group(multiple='', v-for="order in orders", :key="order.id")
                         v-list-item
@@ -14,28 +14,34 @@
                                     v-list-item-subtitle {{order.phone}}
                                 v-list-item-action
                                     v-btn.primary(:to="'/ad/' + order.adId") Open
+
 </template>
 
 <script>
     export default {
         name: "Orders",
-        data () {
-            return {
-                orders: [
-                    {
-                        id: 'raw',
-                        name: 'Dima',
-                        phone: '89213602',
-                        adId: '123',
-                        done: false
-                    }
-                ]
-            }
-        },
         methods: {
             markDone(order){
+                this.$store.dispatch('markOrderDone', order.id)
+                .then(() => {
+                    order.done = true
+                })
+                .catch(() => {
+
+                })
                 order.done = true
             }
+        },
+        computed: {
+            loading() {
+                return this.$store.getters.loading
+            },
+            orders() {
+                return this.$store.getters.orders
+            }
+        },
+        created() {
+            this.$store.dispatch('fetchOrders')
         }
     }
 </script>

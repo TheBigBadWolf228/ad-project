@@ -20,7 +20,7 @@
                         v-card-actions
                             v-spacer
                             v-btn(text, :to="'/ad/' + ad.id")  OPEN
-                            v-btn(raised, class="primary")  BUY
+                            app-buy-modal(:ad="ad")
     div(v-else)
         v-container
             v-row

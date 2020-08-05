@@ -4,8 +4,10 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import router from './router'
 import firebase from 'firebase';
+import BuyModal from "@/components/Shared/BuyModal";
 
 
+Vue.component('app-buy-modal', BuyModal)
 Vue.config.productionTip = false
 
 new Vue({
